@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/controllers/controller.ts","./src/routes/contract.routes.ts"],"version":"5.8.2"}
+{"root":["./src/index.ts","./src/websocket.ts","./src/controllers/controller.ts","./src/routes/contract.routes.ts"],"version":"5.8.2"}

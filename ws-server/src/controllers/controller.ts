@@ -10,6 +10,15 @@ const contractSchema = z.object({
   status: z.enum(["Draft", "Finalized"]),
 });
 
+export const getContracts = async (req: Request, res: Response) => { 
+  try {
+    const contracts = await prisma.contract.findMany();
+    res.json(contracts);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 export const createContract = async (req: Request, res: Response) => {
   try {
     const parsedData = contractSchema.parse(req.body);

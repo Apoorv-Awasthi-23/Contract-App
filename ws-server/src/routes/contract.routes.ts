@@ -1,11 +1,11 @@
 import express from "express";
-import { createContract,getContractById,updateContract,deleteContract } from "../controllers/controller"
+import { createContract,getContractById,updateContract,deleteContract,getContracts } from "../controllers/controller"
 import e from "express";
 const router = express.Router()
 
 router.post("/createContract", createContract);
 
-// router.get("/contracts", getContracts);
+ router.get("/contracts", getContracts);
 
 router.get("/contracts/:id", getContractById);
 

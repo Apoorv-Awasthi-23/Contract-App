@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteContract = exports.updateContract = exports.getContractById = exports.createContract = void 0;
+exports.deleteContract = exports.updateContract = exports.getContractById = exports.createContract = exports.getContracts = void 0;
 const client_1 = require("@prisma/client");
 const zod_1 = require("zod");
 const prisma = new client_1.PrismaClient();
@@ -18,6 +18,16 @@ const contractSchema = zod_1.z.object({
     contractData: zod_1.z.any(),
     status: zod_1.z.enum(["Draft", "Finalized"]),
 });
+const getContracts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const contracts = yield prisma.contract.findMany();
+        res.json(contracts);
+    }
+    catch (error) {
+        res.status(400).json(error);
+    }
+});
+exports.getContracts = getContracts;
 const createContract = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const parsedData = contractSchema.parse(req.body);
